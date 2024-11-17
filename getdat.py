@@ -17,7 +17,6 @@ with sync_playwright() as p:
     page.goto(f"https://www.duolingo.com/api/1/users/show?username={username}")
     page.wait_for_load_state('networkidle');
     dat = page.content()
-    print(dat)
     dat = dat.removesuffix('</pre></body></html>')
     dat = dat.removeprefix('<html><head><link rel="stylesheet" href="resource://content-accessible/plaintext.css"></head><body><pre>')
     dat = json.loads(dat)

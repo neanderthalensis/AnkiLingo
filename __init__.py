@@ -9,6 +9,7 @@ import json
 import subprocess
 import os
 import sys
+import time
 sys.path.append(os.path.join(os.path.dirname(__file__), "lib"))
 from googletrans import Translator
 
@@ -25,6 +26,7 @@ def show_progress_bar(): # Create a dialog
 	dialog.setLayout(layout) # Show the dialog 
 	dialog.show() # Update the progress bar 
 	return dialog, progress_bar
+
 
 
 def pull_from_dl():
@@ -51,6 +53,7 @@ def pull_from_dl():
 		if word not in oldnotes:
 			print(word)
 			trans = translator.translate(word, src=inlang, dest=outlang)
+			time.sleep(0.2)
 			note = Note(mw.col, mw.col.models.by_name("Basic"))
 			note["Front"] = word 
 			note["Back"] = trans.text
